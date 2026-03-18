@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 63.178.57.101
+          username: admin
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull georgiygal/petclinic:latest
+            
+            sudo docker stop petclinic || true
+            sudo docker rm petclinic || true
+            
+            sudo docker run -d \
+              -p 8080:8080 \
+              --name petclinic \
+              -e SPRING_DATASOURCE_URL=jdbc:postgresql://63.177.243.185:5432/petclinic \
+              -e SPRING_DATASOURCE_USERNAME=petclinic \
+              -e SPRING_DATASOURCE_PASSWORD=petclinic \
+              georgiygal/petclinic:latest
