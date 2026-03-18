@@ -46,3 +46,15 @@ out/
 _site/
 *.css
 !petclinic.css
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# SSH keys
+*.pem
+*.key
+
+# OS
+.DS_Store
