@@ -105,7 +105,7 @@ docker run -d -p 8080:8080 --name petclinic georgiygal/petclinic:latest
 
 Після запуску контейнера веб-застосунок доступний за адресою:
 
-http://3.127.214.153:8080
+https://petclinic-ggal.duckdns.org/
 
 Архітектура моніторингу
 
